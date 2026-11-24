@@ -12,6 +12,8 @@ ENTRY = "Our server didn't crash — it gave up halfway through your request and
 
 
 def main() -> None:
+    assert len(ENTRY) <= 200, "entry exceeds 200 characters"
+    assert "\n" not in ENTRY, "entry must be a single line"
     os.makedirs("/output", exist_ok=True)
     with open("/output/entry.txt", "w", encoding="utf-8") as f:
         f.write(ENTRY)
